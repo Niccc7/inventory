@@ -130,6 +130,11 @@ public class Main_Produk extends javax.swing.JFrame {
                 indexMouseClicked(evt);
             }
         });
+        index.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                indexActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,6 +274,10 @@ public class Main_Produk extends javax.swing.JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_hapusMouseClicked
+
+    private void indexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indexActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_indexActionPerformed
 
     /**
      * @param args the command line arguments

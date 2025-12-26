@@ -156,7 +156,7 @@ public class Edit_Produk extends javax.swing.JFrame {
             return;
         }
 
-        String sql = "UPDATE products SET sku = ?, name = ?, satuan = ? WHERE id = ?";
+        String sql = "UPDATE products SET code = ?, name = ?, satuan = ? WHERE id = ?";
 
         try (Connection conn = Koneksi.getConnection();   // atau DBConnection.getConnection()
              PreparedStatement ps = conn.prepareStatement(sql)) {

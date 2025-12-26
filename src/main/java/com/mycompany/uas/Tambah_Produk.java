@@ -187,8 +187,8 @@ public class Tambah_Produk extends javax.swing.JFrame {
     private void indexMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_indexMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        Main_Head Headindex = new Main_Head();
-        Headindex.setVisible(true);
+        Main_Produk indexs = new Main_Produk();
+        indexs.setVisible(true);
     }//GEN-LAST:event_indexMouseClicked
 
     /**

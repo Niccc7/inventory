@@ -22,7 +22,7 @@ public class Main_Head extends javax.swing.JFrame {
     public Main_Head(String username) {
         this.username = username;
         initComponents();
-        Header.setText("Head - Index | " + username); // misalnya label judul
+        Header.setText("Head - Index | " + username);
     }
     
     public Main_Head() {
@@ -120,6 +120,9 @@ public class Main_Head extends javax.swing.JFrame {
 
     private void userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseClicked
         // TODO add your handling code here:
+        this.setVisible(false);
+        Main_User users = new Main_User(this.username);
+        users.setVisible(true);
     }//GEN-LAST:event_userMouseClicked
 
     private void stokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stokMouseClicked
