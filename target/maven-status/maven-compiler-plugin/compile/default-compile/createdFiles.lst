@@ -26,9 +26,11 @@ com\mycompany\uas\Main_User$1.class
 com\mycompany\uas\Edit_Produk$2.class
 com\mycompany\uas\Main_Produk$1.class
 com\mycompany\uas\Main_Produk$4.class
+com\mycompany\uas\Main_Admin$4.class
 com\mycompany\uas\Edit_User$2.class
 com\mycompany\uas\Tambah_User$2.class
 com\mycompany\uas\Tambah_Produk$3.class
+com\mycompany\uas\Main_Admin$2.class
 com\mycompany\uas\Main_User$2.class
 com\mycompany\uas\Main_Produk$7.class
 com\mycompany\uas\Koneksi.class
@@ -43,11 +45,13 @@ com\mycompany\uas\Stok_Adj$1.class
 com\mycompany\uas\Tambah_Produk.class
 com\mycompany\uas\Tambah_User$1.class
 com\mycompany\uas\Main_User$3.class
+com\mycompany\uas\Main_Admin$3.class
 com\mycompany\uas\Main_Produk$6.class
 com\mycompany\uas\Main.class
 com\mycompany\uas\Edit_User$1.class
 com\mycompany\uas\Main_Admin.class
 com\mycompany\uas\Main_User$6.class
+com\mycompany\uas\Main_Head$5.class
 com\mycompany\uas\Main$2.class
 com\mycompany\uas\Main_Head$2.class
 com\mycompany\uas\Main_Stok.class

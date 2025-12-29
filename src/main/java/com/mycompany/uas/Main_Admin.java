@@ -34,7 +34,7 @@ public class Main_Admin extends javax.swing.JFrame {
     }
 
     public Main_Admin() {
-        this(0, null, "ADMIN");
+        this(0, "Admin", "ADMIN");
     }
 
     /**
@@ -48,7 +48,7 @@ public class Main_Admin extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         Inbound = new javax.swing.JButton();
-        stokadj = new javax.swing.JButton();
+        stok = new javax.swing.JButton();
         Outbound = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,10 +63,10 @@ public class Main_Admin extends javax.swing.JFrame {
             }
         });
 
-        stokadj.setText("Stok");
-        stokadj.addMouseListener(new java.awt.event.MouseAdapter() {
+        stok.setText("Stok");
+        stok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                stokadjMouseClicked(evt);
+                stokMouseClicked(evt);
             }
         });
 
@@ -86,17 +86,17 @@ public class Main_Admin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Inbound)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Outbound)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stokadj)
-                        .addGap(37, 37, 37))))
+                        .addComponent(stok)))
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,20 +105,20 @@ public class Main_Admin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Inbound)
-                    .addComponent(stokadj)
+                    .addComponent(stok)
                     .addComponent(Outbound))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void stokadjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stokadjMouseClicked
+    private void stokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stokMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
         Main_Stok stock = new Main_Stok(userId, username, role);
         stock.setVisible(true);
-    }//GEN-LAST:event_stokadjMouseClicked
+    }//GEN-LAST:event_stokMouseClicked
 
     private void OutboundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OutboundActionPerformed
         // TODO add your handling code here:
@@ -161,6 +161,6 @@ public class Main_Admin extends javax.swing.JFrame {
     private javax.swing.JButton Inbound;
     private javax.swing.JButton Outbound;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton stokadj;
+    private javax.swing.JButton stok;
     // End of variables declaration//GEN-END:variables
 }

@@ -133,14 +133,14 @@ public class Main_Head extends javax.swing.JFrame {
     private void produkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produkMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        Main_Produk indexP = new Main_Produk();
+        Main_Produk indexP = new Main_Produk(username);
         indexP.setVisible(true);
     }//GEN-LAST:event_produkMouseClicked
 
     private void userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        Main_User users = new Main_User(this.username);
+        Main_User users = new Main_User(username);
         users.setVisible(true);
     }//GEN-LAST:event_userMouseClicked
 

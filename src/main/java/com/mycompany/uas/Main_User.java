@@ -22,7 +22,9 @@ public class Main_User extends javax.swing.JFrame {
     private String currentUsername;
     
     public Main_User(String currentUsername) {
-        this.currentUsername = currentUsername;
+        this.currentUsername = (currentUsername == null || currentUsername.trim().isEmpty())
+                ? "Guest"
+                : currentUsername.trim();
         initComponents();
         setLocationRelativeTo(null);
         initTable();
@@ -30,7 +32,7 @@ public class Main_User extends javax.swing.JFrame {
     }
     
     public Main_User() {
-        this(null);  // supaya form bisa dibuka untuk testing tanpa login
+        this("Guest");
     }
     
     private void initTable() {

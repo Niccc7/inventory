@@ -16,12 +16,21 @@ public class Main_Produk extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main_Produk.class.getName());
 
     private DefaultTableModel tableModel;
+    private String currentUsername;
     
-    public Main_Produk() {
+    public Main_Produk(String currentUsername) {
+        this.currentUsername = (currentUsername == null || currentUsername.trim().isEmpty())
+                ? "Guest"
+                : currentUsername.trim();
+
         initComponents();
         setLocationRelativeTo(null);
         initTable();
         loadProduk();
+    }
+
+    public Main_Produk() {
+        this("Guest");
     }
     
     private void initTable() {
@@ -189,7 +198,7 @@ public class Main_Produk extends javax.swing.JFrame {
     private void indexMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_indexMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        Main_Head Headindex = new Main_Head();
+        Main_Head Headindex = new Main_Head(currentUsername);
         Headindex.setVisible(true);
     }//GEN-LAST:event_indexMouseClicked
 

@@ -21,8 +21,9 @@ public class Main_Stok extends javax.swing.JFrame {
     private String username;
 
     public Main_Stok() {
-        this(0, null, "HEAD");
+        this(0, "Guest", "SUPERVISOR");
     }
+
 
     public Main_Stok(int userId, String username, String role) {
         this.userId = userId;
