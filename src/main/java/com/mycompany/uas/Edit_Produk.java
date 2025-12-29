@@ -15,13 +15,16 @@ public class Edit_Produk extends javax.swing.JFrame {
 
     
     private int idProduk;
-    public Edit_Produk(int id, String sku, String nama, String satuan) {
+    private String currentUsername;
+
+    public Edit_Produk(int id, String code, String nama, String satuan, String currentUsername) {
         this.idProduk = id;
+        this.currentUsername = currentUsername;
         initComponents();
         setLocationRelativeTo(null);
 
         // isi form dengan data lama
-        this.sku.setText(sku);
+        this.sku.setText(code);
         this.namee.setText(nama);
         this.selectsatuan.setSelectedItem(satuan);
     }
@@ -139,7 +142,7 @@ public class Edit_Produk extends javax.swing.JFrame {
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        Main_Produk indexP = new Main_Produk();
+        Main_Produk indexP = new Main_Produk(currentUsername);
         indexP.setVisible(true);
     }//GEN-LAST:event_backMouseClicked
 

@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.uas;
-import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -15,10 +14,17 @@ public class Tambah_Produk extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Tambah_Produk.class.getName());
 
+    private String currentUsername;
+    
     /**
-     * Creates new form Tambah_Produk
+     *
      */
     public Tambah_Produk() {
+        initComponents();
+    }
+
+    public Tambah_Produk(String currentUsername) {
+        this.currentUsername = currentUsername;
         initComponents();
     }
 
@@ -187,7 +193,7 @@ public class Tambah_Produk extends javax.swing.JFrame {
     private void indexMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_indexMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        Main_Produk indexs = new Main_Produk();
+        Main_Produk indexs = new Main_Produk(currentUsername);
         indexs.setVisible(true);
     }//GEN-LAST:event_indexMouseClicked
 

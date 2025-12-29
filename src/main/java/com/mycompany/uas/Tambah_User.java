@@ -26,7 +26,6 @@ public class Tambah_User extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    // === constructor default untuk preview / run manual ===
     public Tambah_User() {
         this(null);
     }

@@ -205,7 +205,7 @@ public class Main_Produk extends javax.swing.JFrame {
     private void tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tambahMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        Tambah_Produk Tambah = new Tambah_Produk();
+        Tambah_Produk Tambah = new Tambah_Produk(currentUsername);
         Tambah.setVisible(true);
     }//GEN-LAST:event_tambahMouseClicked
 
@@ -229,12 +229,12 @@ public class Main_Produk extends javax.swing.JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String sku   = (String) tblProduk.getValueAt(row, 1);
+        String code   = (String) tblProduk.getValueAt(row, 1);
         String nama  = (String) tblProduk.getValueAt(row, 2);
         String satuan= (String) tblProduk.getValueAt(row, 3);
 
         this.setVisible(false);
-        Edit_Produk formEdit = new Edit_Produk(id, sku, nama, satuan);
+        Edit_Produk formEdit = new Edit_Produk(id, code, nama, satuan, currentUsername);
         formEdit.setVisible(true);
     }//GEN-LAST:event_editMouseClicked
 
