@@ -16,17 +16,25 @@ public class Main_Head extends javax.swing.JFrame {
      * Creates new form Main_Head
      */
     
+    private int userId;
     private String username;
+    private String role;
 
-    // constructor dipanggil dari login
-    public Main_Head(String username) {
+    public Main_Head(int userId, String username, String role) {
+        this.userId = userId;
         this.username = username;
+        this.role = role;
+
         initComponents();
         Header.setText("Head - Index | " + username);
     }
-    
+
+    public Main_Head(String username) {
+        this(0, username, "HEAD");
+    }
+
     public Main_Head() {
-        initComponents();
+        this(0, null, "HEAD");
     }
 
     /**
@@ -42,7 +50,8 @@ public class Main_Head extends javax.swing.JFrame {
         produk = new javax.swing.JButton();
         user = new javax.swing.JButton();
         stok = new javax.swing.JButton();
-        transaksi = new javax.swing.JButton();
+        inbound = new javax.swing.JButton();
+        outbound = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,10 +79,17 @@ public class Main_Head extends javax.swing.JFrame {
             }
         });
 
-        transaksi.setText("Transaksi");
-        transaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+        inbound.setText("Inbound");
+        inbound.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                transaksiMouseClicked(evt);
+                inboundMouseClicked(evt);
+            }
+        });
+
+        outbound.setText("Outbound");
+        outbound.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                outboundMouseClicked(evt);
             }
         });
 
@@ -91,9 +107,11 @@ public class Main_Head extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(stok)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(transaksi))
+                        .addComponent(inbound)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(outbound))
                     .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,8 +122,9 @@ public class Main_Head extends javax.swing.JFrame {
                     .addComponent(user)
                     .addComponent(produk)
                     .addComponent(stok)
-                    .addComponent(transaksi))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(inbound)
+                    .addComponent(outbound))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -127,11 +146,18 @@ public class Main_Head extends javax.swing.JFrame {
 
     private void stokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stokMouseClicked
         // TODO add your handling code here:
+        this.setVisible(false);
+        Main_Stok stock = new Main_Stok(userId, username, role);
+        stock.setVisible(true);
     }//GEN-LAST:event_stokMouseClicked
 
-    private void transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiMouseClicked
+    private void inboundMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inboundMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_transaksiMouseClicked
+    }//GEN-LAST:event_inboundMouseClicked
+
+    private void outboundMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_outboundMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_outboundMouseClicked
 
     /**
      * @param args the command line arguments
@@ -160,9 +186,10 @@ public class Main_Head extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Header;
+    private javax.swing.JButton inbound;
+    private javax.swing.JButton outbound;
     private javax.swing.JButton produk;
     private javax.swing.JButton stok;
-    private javax.swing.JButton transaksi;
     private javax.swing.JButton user;
     // End of variables declaration//GEN-END:variables
 }

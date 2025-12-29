@@ -25,13 +25,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="transaksi" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="stokadj" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel1" alignment="0" min="-2" pref="281" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="Inbound" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="Outbound" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stokadj" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
       </Group>
@@ -42,10 +45,11 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="transaksi" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Inbound" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="stokadj" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Outbound" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -59,15 +63,30 @@
         <Property name="text" type="java.lang.String" value="Admin - Index"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="transaksi">
+    <Component class="javax.swing.JButton" name="Inbound">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Transaksi"/>
+        <Property name="text" type="java.lang.String" value="Inbound"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="InboundMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="stokadj">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Stok Adjustment"/>
+        <Property name="text" type="java.lang.String" value="Stok"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="stokadjMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Outbound">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Outbound"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OutboundMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OutboundActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

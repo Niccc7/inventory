@@ -33,11 +33,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="stok" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="transaksi" min="-2" max="-2" attributes="0"/>
+                      <Component id="inbound" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="outbound" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="Header" alignment="0" min="-2" pref="237" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,9 +52,10 @@
                   <Component id="user" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="produk" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="stok" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="transaksi" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="inbound" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="outbound" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -90,12 +93,20 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="stokMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="transaksi">
+    <Component class="javax.swing.JButton" name="inbound">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Transaksi"/>
+        <Property name="text" type="java.lang.String" value="Inbound"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="transaksiMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="inboundMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="outbound">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Outbound"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="outboundMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>

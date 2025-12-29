@@ -16,17 +16,25 @@ public class Main_Admin extends javax.swing.JFrame {
      * Creates new form Main_Admin
      */
     
+    private int userId;
     private String username;
+    private String role;
 
-    // constructor dipanggil dari login
-    public Main_Admin(String username) {
+    public Main_Admin(int userId, String username, String role) {
+        this.userId = userId;
         this.username = username;
+        this.role = role;
+
         initComponents();
-        jLabel1.setText("Admin - Index | " + username); // misalnya label judul
+        jLabel1.setText("Admin - Index | " + username);
+    }
+
+    public Main_Admin(int userId, String username) {
+        this(userId, username, "ADMIN");
     }
 
     public Main_Admin() {
-        initComponents();
+        this(0, null, "ADMIN");
     }
 
     /**
@@ -39,17 +47,40 @@ public class Main_Admin extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        transaksi = new javax.swing.JButton();
+        Inbound = new javax.swing.JButton();
         stokadj = new javax.swing.JButton();
+        Outbound = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Admin - Index");
 
-        transaksi.setText("Transaksi");
+        Inbound.setText("Inbound");
+        Inbound.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InboundMouseClicked(evt);
+            }
+        });
 
-        stokadj.setText("Stok Adjustment");
+        stokadj.setText("Stok");
+        stokadj.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                stokadjMouseClicked(evt);
+            }
+        });
+
+        Outbound.setText("Outbound");
+        Outbound.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OutboundMouseClicked(evt);
+            }
+        });
+        Outbound.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OutboundActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,12 +88,15 @@ public class Main_Admin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(transaksi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(stokadj))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Inbound)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Outbound)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stokadj)
+                        .addGap(37, 37, 37))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,13 +104,33 @@ public class Main_Admin extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(transaksi)
-                    .addComponent(stokadj))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Inbound)
+                    .addComponent(stokadj)
+                    .addComponent(Outbound))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void stokadjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stokadjMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Main_Stok stock = new Main_Stok(userId, username, role);
+        stock.setVisible(true);
+    }//GEN-LAST:event_stokadjMouseClicked
+
+    private void OutboundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OutboundActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OutboundActionPerformed
+
+    private void OutboundMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OutboundMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OutboundMouseClicked
+
+    private void InboundMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InboundMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InboundMouseClicked
 
     /**
      * @param args the command line arguments
@@ -100,12 +154,13 @@ public class Main_Admin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Main_Admin().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Main_Admin(0, "TEST").setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Inbound;
+    private javax.swing.JButton Outbound;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton stokadj;
-    private javax.swing.JButton transaksi;
     // End of variables declaration//GEN-END:variables
 }

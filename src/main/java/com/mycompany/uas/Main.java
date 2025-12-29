@@ -115,68 +115,51 @@ public class Main extends javax.swing.JFrame {
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
         // TODO add your handling code here:
-        String username = usn.getText();
-        String password = pass.getText();
-        
-        String url = "jdbc:mysql://localhost:3306/inventory";
-        String user = "root";
-        String pass = "";
+        String username = usn.getText().trim();
+        String password = new String(pass.getPassword());
 
-        String sql = "SELECT password, role FROM users WHERE username = ? AND is_active = 1";
+        String sql = "SELECT id, password, role FROM users WHERE username = ? AND is_active = 1";
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        try (Connection conn = Koneksi.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            try (Connection connection = DriverManager.getConnection(url, user, pass);
-                 PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            ps.setString(1, username);
 
-                pstmt.setString(1, username);
-
-                try (ResultSet rs = pstmt.executeQuery()) {
-
-                    if (rs.next()) {
-                        String dbpass = rs.getString("password");
-                        String role   = rs.getString("role"); // ADMIN / SUPERVISOR
-
-                        if (password.equals(dbpass)) {
-                            // login sukses
-                            JOptionPane.showMessageDialog(this,
-                                "Login berhasil. Selamat datang, " + username + "!");
-                            this.setVisible(false);
-
-                            // percabangan berdasarkan role
-                            if ("ADMIN".equalsIgnoreCase(role)) {
-                                // halaman admin
-                                JFrame adminFrame = new Main_Admin(username); // ganti dengan class JFrame admin kamu
-                                adminFrame.setVisible(true);
-                            } else {
-                                // selain ADMIN (misal SUPERVISOR) masuk ke halaman supervisor
-                                JFrame supervisorFrame = new Main_Head(username); // ganti dengan class JFrame supervisor kamu
-                                supervisorFrame.setVisible(true);
-                            }
-
-                        } else {
-                            JOptionPane.showMessageDialog(this,
-                                "Username atau Password salah!",
-                                "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(this,
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) {
+                    JOptionPane.showMessageDialog(this,
                             "Login gagal. Username atau password salah.",
                             "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+                    return;
+                }
+
+                int userId = rs.getInt("id");
+                String dbPass = rs.getString("password");
+                String role = rs.getString("role"); // ADMIN / SUPERVISOR / HEAD dll
+
+                if (!password.equals(dbPass)) {
+                    JOptionPane.showMessageDialog(this,
+                            "Username atau Password salah!",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                JOptionPane.showMessageDialog(this,
+                        "Login berhasil. Selamat datang, " + username + "!");
+
+                this.setVisible(false);
+
+                if ("ADMIN".equalsIgnoreCase(role)) {
+                    new Main_Admin(userId, username, role).setVisible(true);
+                } else {
+                    new Main_Head(userId, username, role).setVisible(true);
                 }
             }
-        } catch (ClassNotFoundException e) {
-            System.err.println("Driver Not Found : " + e.getMessage());
-            JOptionPane.showMessageDialog(this,
-                "Error: MySQL Driver tidak ditemukan.",
-                "Database Error", JOptionPane.ERROR_MESSAGE);
+
         } catch (SQLException e) {
-            System.err.println("Database Connection Failed : " + e.getMessage());
             JOptionPane.showMessageDialog(this,
-                "Error: Gagal terhubung ke database. " + e.getMessage(),
-                "Database Error", JOptionPane.ERROR_MESSAGE);
+                    "Error: Gagal terhubung ke database.\n" + e.getMessage(),
+                    "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_loginMouseClicked
 

@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.uas;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,11 +15,73 @@ public class Main_Stok extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main_Stok.class.getName());
 
-    /**
-     * Creates new form Main_Stok
-     */
+    private DefaultTableModel tableModel;
+    private int userId;
+    private String role;
+    private String username;
+
     public Main_Stok() {
+        this(0, null, "HEAD");
+    }
+
+    public Main_Stok(int userId, String username, String role) {
+        this.userId = userId;
+        this.username = username;
+        this.role = role;
+
         initComponents();
+        setLocationRelativeTo(null);
+        initTable();
+        loadStok();
+    }
+
+    private void initTable() {
+        tableModel = new DefaultTableModel(
+                new Object[]{"ID", "Product Code", "Nama", "Satuan", "Qty", "Updated At"}, 0
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        tbstok.setModel(tableModel);
+
+        // sembunyikan kolom ID (kolom 0)
+        tbstok.getColumnModel().getColumn(0).setMinWidth(0);
+        tbstok.getColumnModel().getColumn(0).setMaxWidth(0);
+        tbstok.getColumnModel().getColumn(0).setWidth(0);
+    }
+    private void loadStok() {
+        tableModel.setRowCount(0);
+
+        String sql =
+            "SELECT s.id, p.code, p.name, p.satuan, s.qty_on_hand, s.updated_at " +
+            "FROM stocks s " +
+            "JOIN products p ON p.id = s.product_id " +
+            "ORDER BY p.code ASC";
+
+        try (Connection conn = Koneksi.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Object[] row = new Object[]{
+                        rs.getInt("id"),
+                        rs.getString("code"),
+                        rs.getString("name"),
+                        rs.getString("satuan"),
+                        rs.getBigDecimal("qty_on_hand"), // atau getInt/getDouble sesuai tipe kolom kamu
+                        rs.getTimestamp("updated_at")
+                };
+                tableModel.addRow(row);
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Gagal load data stok: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -28,21 +93,80 @@ public class Main_Stok extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        back = new javax.swing.JButton();
+        head = new javax.swing.JLabel();
+        add = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbstok = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+
+        head.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        head.setText("Main Stock");
+
+        add.setText("Add");
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMouseClicked(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(tbstok);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(add)
+                        .addComponent(back))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(head, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(back)
+                .addGap(10, 10, 10)
+                .addComponent(head)
+                .addGap(14, 14, 14)
+                .addComponent(add)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+
+        if ("ADMIN".equalsIgnoreCase(role)) {
+            new Main_Admin(userId, username, role).setVisible(true);
+        } else {
+            new Main_Head(userId, username, role).setVisible(true);
+        }
+    }//GEN-LAST:event_backMouseClicked
+
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new Stok_Adj(userId, username, role).setVisible(true);
+    }//GEN-LAST:event_addMouseClicked
 
     /**
      * @param args the command line arguments
@@ -70,5 +194,10 @@ public class Main_Stok extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add;
+    private javax.swing.JButton back;
+    private javax.swing.JLabel head;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbstok;
     // End of variables declaration//GEN-END:variables
 }
