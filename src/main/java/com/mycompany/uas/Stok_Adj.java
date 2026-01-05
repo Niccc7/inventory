@@ -125,7 +125,12 @@ public class Stok_Adj extends javax.swing.JFrame {
             }
         });
 
-        prid.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        prid.setModel(new javax.swing.DefaultComboBoxModel<>());
+        prid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pridActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,16 +198,14 @@ public class Stok_Adj extends javax.swing.JFrame {
     private void indexMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_indexMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-
-        if ("ADMIN".equalsIgnoreCase(role)) {
-            new Main_Admin(userId, username, role).setVisible(true);
-        } else {
-            new Main_Head(userId, username, role).setVisible(true);
-        }
+        new Main_Stok(userId, username, role).setVisible(true);
     }//GEN-LAST:event_indexMouseClicked
 
     private void clearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearMouseClicked
         // TODO add your handling code here:
+        qty.setText("");
+        reason.setText("");
+        prid.setSelectedIndex(0);
     }//GEN-LAST:event_clearMouseClicked
 
     private void saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMouseClicked
@@ -351,6 +354,10 @@ public class Stok_Adj extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_saveMouseClicked
 
+    private void pridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pridActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pridActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -380,8 +387,8 @@ public class Stok_Adj extends javax.swing.JFrame {
     private javax.swing.JButton clear;
     private javax.swing.JLabel head;
     private javax.swing.JButton index;
-    private javax.swing.JComboBox prid;
     private javax.swing.JLabel pc;
+    private javax.swing.JComboBox<ProductItem> prid;
     private javax.swing.JTextField qty;
     private javax.swing.JLabel quantity;
     private javax.swing.JLabel quantity1;

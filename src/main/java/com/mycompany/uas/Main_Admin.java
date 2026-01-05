@@ -126,10 +126,16 @@ public class Main_Admin extends javax.swing.JFrame {
 
     private void OutboundMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OutboundMouseClicked
         // TODO add your handling code here:
+        this.setVisible(false);
+        Outbound out = new Outbound(userId, username, role);
+        out.setVisible(true);
     }//GEN-LAST:event_OutboundMouseClicked
 
     private void InboundMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InboundMouseClicked
         // TODO add your handling code here:
+        this.setVisible(false);
+        Inbound inb = new Inbound(userId, username, role);
+        inb.setVisible(true);
     }//GEN-LAST:event_InboundMouseClicked
 
     /**

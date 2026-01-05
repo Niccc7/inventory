@@ -80,7 +80,7 @@ public class Tambah_User extends javax.swing.JFrame {
 
         pw1.setText("Role");
 
-        roles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "SUPERADMIN" }));
+        roles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "SUPERVISOR" }));
 
         clear.setText("Clear");
         clear.addMouseListener(new java.awt.event.MouseAdapter() {

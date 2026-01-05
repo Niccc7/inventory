@@ -30,11 +30,11 @@ public class Main_Head extends javax.swing.JFrame {
     }
 
     public Main_Head(String username) {
-        this(0, username, "HEAD");
+        this(0, username, "SUPERVISOR");
     }
 
     public Main_Head() {
-        this(0, null, "HEAD");
+        this(0, null, "SUPERVISOR");
     }
 
     /**
@@ -153,10 +153,16 @@ public class Main_Head extends javax.swing.JFrame {
 
     private void inboundMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inboundMouseClicked
         // TODO add your handling code here:
+        this.setVisible(false);
+        Inbound inb = new Inbound(userId, username, role);
+        inb.setVisible(true);
     }//GEN-LAST:event_inboundMouseClicked
 
     private void outboundMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_outboundMouseClicked
         // TODO add your handling code here:
+        this.setVisible(false);
+        Outbound out = new Outbound(userId, username, role);
+        out.setVisible(true);
     }//GEN-LAST:event_outboundMouseClicked
 
     /**

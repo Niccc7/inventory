@@ -112,7 +112,7 @@ public class Main_Stok extends javax.swing.JFrame {
         head.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         head.setText("Main Stock");
 
-        add.setText("Add");
+        add.setText("Adjust");
         add.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addMouseClicked(evt);
